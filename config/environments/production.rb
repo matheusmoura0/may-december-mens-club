@@ -4,6 +4,6 @@ Rails.application.configure do
   config.consider_all_requests_local = false
   config.force_ssl = ENV.fetch("FORCE_SSL", "true") == "true"
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
-  config.log_tags = [:request_id]
+  config.log_tags = [ :request_id ]
   config.active_support.report_deprecations = false
 end
