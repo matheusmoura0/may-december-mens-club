@@ -21,8 +21,8 @@ class ApplicationController < ActionController::Base
 
   def require_active_member!
     require_authentication!
-    return unless performed?
-    return if current_user&.active?
+    return if performed?
+    return if current_user.active?
 
     redirect_to root_path, alert: "Your membership is not active."
   end
