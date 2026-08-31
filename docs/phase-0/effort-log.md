@@ -2,18 +2,16 @@
 
 Record actual human effort throughout the pilot. Log implementation, AI-assisted work, review, rework, testing, defect handling, and accepted-output efficiency.
 
-| Date | Work item | Human implementation | AI-assisted work | Review | Rework | Testing | Notes |
-|---|---|---:|---:|---:|---:|---:|---|
-| 2026-08-28 | Repository initialization and Milestone 1 foundation setup | Awaiting Technical Lead confirmation | Awaiting Technical Lead confirmation | Awaiting Technical Lead confirmation | Awaiting Technical Lead confirmation | Awaiting Technical Lead confirmation | Actual human effort records have not yet been supplied for this entry. |
-| 2026-08-31 | Milestone 1 closure documentation and governance reconciliation | Awaiting Technical Lead confirmation | Awaiting Technical Lead confirmation | Awaiting Technical Lead confirmation | Awaiting Technical Lead confirmation | Awaiting Technical Lead confirmation | Actual closure effort, elapsed time, rewrite percentage where material, and accepted-output efficiency require Technical Lead confirmation before Milestone 1 submission. |
+| Date | Work item | Human implementation | AI-assisted work | Review | Rework | Testing | Total elapsed | Notes |
+|---|---|---:|---:|---:|---:|---:|---:|---|
+| 2026-08-28 | Repository initialization and Milestone 1 foundation setup | 5.0-7.0h | 2.0-3.5h | 1.0-1.5h | 0.5-1.0h | 0.75-1.25h | 9.25-14.25h | Technical Lead supplied actual effort range. No material defects recorded; rewrite percentage not material. Accepted-output efficiency: foundation accepted for PR evidence after review and limited documentation rework. |
+| 2026-08-31 | Milestone 1 closure documentation and governance reconciliation | 0.5-0.75h | 0.5-0.75h | 0.25h | 0.25h | 0.25h | 1.75-2.25h | Technical Lead supplied actual effort range. No product defects recorded; rewrite percentage not material. Accepted-output efficiency: closure docs accepted after governance, CI evidence, and Staging ownership reconciliation. |
 
-## Current effort-record status
+## Current effort-record summary
 
-Actual human effort figures are awaiting Technical Lead confirmation. Milestone 1
-submission should not claim final effort reconciliation until implementation,
-AI supervision, review, rework, defect handling, testing, elapsed time, material
-rewrite percentage, and accepted-output efficiency have been recorded with real
-figures.
+Actual human effort ranges were supplied by the Technical Lead for Milestone 1
+foundation work and Milestone 1 closure documentation. No material defects or
+material rewrites were recorded for these entries.
 
 ## Logging rules
 

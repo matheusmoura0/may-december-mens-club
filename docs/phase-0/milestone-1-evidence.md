@@ -71,6 +71,6 @@ status:
 1. Repository ownership transfer: completed. The authoritative repository is now `may-december-club/may-december-mens-club`.
 2. Branch protection/ruleset: completed. The active `Protect main` ruleset requires pull-request based changes and successful required CI checks.
 3. Business-owned cloud/Staging: awaiting Product Owner / business account setup confirmation. No Staging deployment configuration is present in this repository. The intended non-Production Staging proposal discussed is Render, using one non-Production Rails Web Service and one PostgreSQL database under a business-owned May December Club account/workspace. Michael / May December Club still needs to confirm the provider/account, what account/access setup is needed, and that May December Club retains administrative ownership/control.
-4. Actual human effort log: awaiting Technical Lead confirmation before final Milestone 1 acceptance submission.
+4. Actual human effort log: completed with Technical Lead-supplied effort ranges in `docs/phase-0/effort-log.md`.
 
 No Production deployment is included in this evidence package.
