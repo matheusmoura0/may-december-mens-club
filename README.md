@@ -1,8 +1,10 @@
 # May December Men's Club
 
-Temporary development repository for the May December Men's Club Phase 0 pilot.
+Business-owned repository for the May December Men's Club Phase 0 pilot.
 
-> Note: this repository is currently under a personal GitHub account for implementation convenience and is intended to be transferred to the May December organization/business ownership before Phase 0 is formally treated as business-owned.
+Authoritative repository: `may-december-club/may-december-mens-club`.
+
+The repository is owned under the May December Club GitHub organization. Phase 0 work is conducted under the approved pilot scope and uses business-controlled repository governance and non-Production Staging infrastructure.
 
 ## Phase 0 goals
 
@@ -14,4 +16,6 @@ Temporary development repository for the May December Men's Club Phase 0 pilot.
 
 ## Current status
 
-Milestone 1 – Foundation in progress.
+Milestone 1 — Foundation is complete and ready for final Product Owner acceptance review.
+
+The Milestone 1 package includes the Rails foundation, architecture and engineering documentation, business-owned repository governance, passing CI/security evidence, effort records, reproducible dependency configuration, and operational business-controlled non-Production Render Staging.
