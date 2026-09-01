@@ -22,10 +22,11 @@ Implemented and committed on `phase-0/milestone-1-foundation`:
 - Bundler Audit dependency audit
 - Dependabot configuration
 - Active Storage local/test configuration
+- Reproducible dependency resolution through committed `Gemfile.lock`
 
 ## CI evidence
 
-The latest GitHub Actions run for the foundation branch completed successfully with all three required jobs passing:
+The latest recorded Milestone 1 GitHub Actions evidence completed successfully with all three required jobs passing:
 
 - test: passed
 - lint: passed
@@ -55,6 +56,25 @@ Documented governance evidence:
 - Branch deletion and non-fast-forward/force pushes blocked.
 - No bypass actors configured.
 
+## Non-Production Staging
+
+Business-controlled non-Production Staging has been established in the May December Club Render workspace.
+
+Staging components:
+
+- Provider: Render.
+- Rails Web Service: `may-december-staging`.
+- PostgreSQL database: `may-december-staging-db`.
+- Region: Oregon (US West).
+- Web Service compute: Free ($0/month at setup).
+- Staging URL: `https://may-december-staging.onrender.com`.
+- Source repository: `may-december-club/may-december-mens-club`.
+- Deployment branch at setup: `phase-0/milestone-1-foundation`.
+
+The initial Staging deployment completed successfully: dependencies were installed from the committed lockfile, the build completed successfully, Puma 8.0.2 booted on Ruby 3.3.8, Render reported the service live, and the application and `/up` health endpoint were manually confirmed operational.
+
+This environment is for Phase 0 non-Production Staging only. No Production infrastructure is included in this evidence package.
+
 ## Review vehicle
 
 Pull Request #1: `Milestone 1: Rails foundation and engineering controls`
@@ -65,12 +85,11 @@ Head: `phase-0/milestone-1-foundation`
 
 ## Administrative completion status
 
-The technical implementation for Milestone 1 is complete. Administrative closure
-status:
+The Milestone 1 implementation and administrative closure items are complete and ready for Product Owner final acceptance review:
 
-1. Repository ownership transfer: completed. The authoritative repository is now `may-december-club/may-december-mens-club`.
+1. Repository ownership transfer: completed. The authoritative repository is `may-december-club/may-december-mens-club`.
 2. Branch protection/ruleset: completed. The active `Protect main` ruleset requires pull-request based changes and successful required CI checks.
-3. Business-owned cloud/Staging: awaiting Product Owner / business account setup confirmation. No Staging deployment configuration is present in this repository. The intended non-Production Staging proposal discussed is Render, using one non-Production Rails Web Service and one PostgreSQL database under a business-owned May December Club account/workspace. Michael / May December Club still needs to confirm the provider/account, what account/access setup is needed, and that May December Club retains administrative ownership/control.
+3. Business-owned cloud/Staging: completed. Non-Production Rails and PostgreSQL Staging services are established in the May December Club Render workspace and the application is operational.
 4. Actual human effort log: completed with Technical Lead-supplied effort ranges in `docs/phase-0/effort-log.md`.
 
-No Production deployment is included in this evidence package.
+Milestone 1 is ready for final acceptance review.
