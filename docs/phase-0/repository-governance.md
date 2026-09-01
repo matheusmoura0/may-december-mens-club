@@ -1,7 +1,6 @@
 # Phase 0 Repository Governance
 
-This document records the repository ownership and branch governance controls
-for Phase 0.
+This document records the repository ownership, branch governance controls, and business-controlled non-Production Staging for Phase 0.
 
 ## Authoritative repository
 
@@ -13,8 +12,7 @@ The repository was transferred intact from
 requests, GitHub Actions workflow history, and evidence were preserved during
 the transfer.
 
-Michael Fitzgerald / May December Club must retain administrative ownership and
-control of the repository.
+Michael Fitzgerald / May December Club retains business administrative ownership and control of the repository. Matheus Moura has the developer/repository access required to perform the approved Phase 0 work.
 
 ## Main branch ruleset
 
@@ -37,21 +35,25 @@ normal changes to `main` require pull requests and passing CI.
 
 ## Cloud and Staging ownership
 
-No Staging deployment configuration is currently present in this repository.
+Business-controlled non-Production Staging is configured in the May December Club Render workspace.
 
-The intended non-Production Staging proposal discussed is Render, using one
-Rails Web Service and one PostgreSQL database under a business-owned May
-December Club account/workspace. Render is not documented here as configured.
+Configured Phase 0 Staging resources:
 
-Before Staging is used for Phase 0, the Product Owner / business owner should
-confirm:
+- Provider: Render
+- Workspace: May December Club
+- Rails Web Service: `may-december-staging`
+- PostgreSQL service: `may-december-staging-db`
+- PostgreSQL database: `may_december_staging`
+- Region: Oregon (US West)
+- Web Service compute at setup: Free ($0/month)
+- PostgreSQL plan at setup: Free
+- Source repository: `may-december-club/may-december-mens-club`
+- Deployment branch at Milestone 1 closure: `phase-0/milestone-1-foundation`
+- Public Staging URL: `https://may-december-staging.onrender.com`
+- Environment purpose: non-Production Phase 0 Staging only
 
-- the intended Staging provider and account/workspace;
-- what infrastructure is already configured, if any;
-- what account or access setup is still needed from Michael Fitzgerald;
-- that May December Club retains administrative ownership/control;
-- that Matheus has only the developer-level access needed for deployment; and
-- that the environment is non-Production.
+The Staging build completed successfully, Puma booted on Ruby 3.3.8, Render reported the service live, and the application and `/up` health endpoint were manually verified as operational.
 
-Production deployment is out of scope for Milestone 1 and Phase 0 closure unless
-separately approved in writing by the Product Owner.
+No Render credentials, database passwords, secret keys, or private database URLs are stored in this repository. Environment secrets remain managed through the Render environment configuration.
+
+No paid infrastructure upgrade or Production deployment is included in this Milestone 1 closure. Production deployment remains out of scope unless separately approved in writing by the Product Owner.
