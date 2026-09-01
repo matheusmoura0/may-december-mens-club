@@ -4,8 +4,8 @@ Record actual human effort throughout the pilot. Log implementation, AI-assisted
 
 | Date | Work item | Human implementation | AI-assisted work | Review | Rework | Testing | Total elapsed | Notes |
 |---|---|---:|---:|---:|---:|---:|---:|---|
-| 2026-08-28 | Repository initialization and Milestone 1 foundation setup | 5.0-7.0h | 2.0-3.5h | 1.0-1.5h | 0.5-1.0h | 0.75-1.25h | 9.25-14.25h | Technical Lead supplied actual effort range. No material defects recorded; rewrite percentage not material. Accepted-output efficiency: foundation accepted for PR evidence after review and limited documentation rework. |
-| 2026-08-31 | Milestone 1 closure documentation and governance reconciliation | 0.5-0.75h | 0.5-0.75h | 0.25h | 0.25h | 0.25h | 1.75-2.25h | Technical Lead supplied actual effort range. No product defects recorded; rewrite percentage not material. Accepted-output efficiency: closure docs accepted after governance, CI evidence, and Staging ownership reconciliation. |
+| 2026-08-28 | Repository initialization and Milestone 1 foundation setup | 5.0-7.0h | 2.0-3.5h | 1.0-1.5h | 0.5-1.0h | 0.75-1.25h | 9.25-14.25h | Technical Lead supplied actual effort range. No material defects recorded; rewrite percentage not material. Accepted-output efficiency: foundation included in the controlled PR evidence package after review and limited documentation rework; formal Product Owner acceptance remained pending. |
+| 2026-08-31 | Milestone 1 closure documentation and governance reconciliation | 0.5-0.75h | 0.5-0.75h | 0.25h | 0.25h | 0.25h | 1.75-2.25h | Technical Lead supplied actual effort range. No product defects recorded; rewrite percentage not material. Accepted-output efficiency: closure documentation reconciled across governance, CI evidence, Staging ownership, and logs and submitted for Product Owner acceptance review; formal acceptance remained pending. |
 
 ## Current effort-record summary
 
