@@ -16,6 +16,8 @@ The repository is owned under the May December Club GitHub organization. Phase 0
 
 ## Current status
 
-Milestone 1 — Foundation is complete and ready for final Product Owner acceptance review.
+Milestone 1 — Foundation implementation and the controlled evidence package are complete and submitted for final Product Owner acceptance review.
 
 The Milestone 1 package includes the Rails foundation, architecture and engineering documentation, business-owned repository governance, passing CI/security evidence, effort records, reproducible dependency configuration, and operational business-controlled non-Production Render Staging.
+
+Milestone 1 is not yet formally accepted. Pull Request #1 must remain open and must not be merged to `main` until Product Owner approval is provided. Milestone 2 must not begin until Milestone 1 is formally accepted.
