@@ -7,6 +7,7 @@ class RegistrationsController < ApplicationController
     @user = User.new(registration_params)
 
     if @user.save
+      reset_session
       session[:user_id] = @user.id
       redirect_to root_path, notice: "Registration received. Your membership is pending approval."
     else
