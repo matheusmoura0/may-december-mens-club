@@ -1,9 +1,11 @@
 <main>
-  <h1>Register</h1>
+  <h1>Create your account</h1>
+  <p>Step 1 of 2 — Account credentials</p>
+  <p>Your progress is saved after this step so you can sign out and resume later.</p>
 
   <% if @user.errors.any? %>
     <div role="alert">
-      <p>We could not complete your registration.</p>
+      <p>We could not save this registration step.</p>
       <ul>
         <% @user.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -28,6 +30,6 @@
       <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
     </div>
 
-    <%= form.submit "Register" %>
+    <%= form.submit "Save and continue" %>
   <% end %>
 </main>
