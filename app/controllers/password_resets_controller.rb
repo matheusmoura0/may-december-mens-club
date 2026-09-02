@@ -7,7 +7,7 @@ class PasswordResetsController < ApplicationController
 
     if user
       token = user.generate_token_for(:password_reset)
-      reset_url = edit_password_reset_url(token, host: request.host, protocol: request.protocol, port: request.optional_port)
+      reset_url = "#{application_base_url}/password/reset/#{token}"
       PasswordResetMailer.with(user: user, reset_url: reset_url).reset.deliver_later
     end
 
@@ -39,6 +39,10 @@ class PasswordResetsController < ApplicationController
   end
 
   private
+
+  def application_base_url
+    ENV.fetch("APP_BASE_URL", "http://localhost:3000").delete_suffix("/")
+  end
 
   def password_params
     params.require(:user).permit(:password, :password_confirmation)
