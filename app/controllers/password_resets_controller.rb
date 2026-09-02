@@ -41,7 +41,11 @@ class PasswordResetsController < ApplicationController
   private
 
   def application_base_url
-    ENV.fetch("APP_BASE_URL", "http://localhost:3000").delete_suffix("/")
+    configured_url = ENV["APP_BASE_URL"]
+    return configured_url.delete_suffix("/") if configured_url.present?
+    return "http://localhost:3000" unless Rails.env.production?
+
+    raise KeyError, "APP_BASE_URL must be configured in deployed environments"
   end
 
   def password_params
