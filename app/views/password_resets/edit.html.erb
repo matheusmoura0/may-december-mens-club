@@ -1,11 +1,8 @@
 <main>
-  <h1>Create your account</h1>
-  <p>Step 1 of 2 — Account credentials</p>
-  <p>Your progress is saved after this step so you can sign out and resume later.</p>
+  <h1>Choose a new password</h1>
 
-  <% if @user.errors.any? %>
+  <% if @user&.errors&.any? %>
     <div role="alert">
-      <p>We could not save this registration step.</p>
       <ul>
         <% @user.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -14,12 +11,7 @@
     </div>
   <% end %>
 
-  <%= form_with model: @user, url: registration_path do |form| %>
-    <div>
-      <%= form.label :email %>
-      <%= form.email_field :email, required: true, autocomplete: "email" %>
-    </div>
-
+  <%= form_with model: @user, url: password_reset_path(params[:token]), method: :patch do |form| %>
     <div>
       <%= form.label :password %>
       <%= form.password_field :password, required: true, autocomplete: "new-password" %>
@@ -30,6 +22,6 @@
       <%= form.password_field :password_confirmation, required: true, autocomplete: "new-password" %>
     </div>
 
-    <%= form.submit "Save and continue" %>
+    <%= form.submit "Update password" %>
   <% end %>
 </main>

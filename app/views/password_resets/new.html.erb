@@ -1,0 +1,13 @@
+<main>
+  <h1>Reset your password</h1>
+  <p>Enter the email address for your account. The system will prepare a time-limited recovery link.</p>
+
+  <%= form_with url: password_reset_requests_path do |form| %>
+    <div>
+      <%= form.label :email %>
+      <%= form.email_field :email, required: true, autocomplete: "email" %>
+    </div>
+
+    <%= form.submit "Request password reset" %>
+  <% end %>
+</main>
