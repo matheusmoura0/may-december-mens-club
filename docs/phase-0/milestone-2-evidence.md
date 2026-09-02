@@ -27,7 +27,7 @@ The original account-state authorization implementation passed CI in run `335716
 
 The guided-registration save/resume and password-recovery completion implementation passed CI in run `33633085047` before integration into the Milestone 2 branch.
 
-After integration, final GitHub Actions CI run `33658392543` completed successfully for commit `e8b2397286511620cd5a34bf44b2d78642becec5` on PR #4.
+After integration, GitHub Actions CI run `33658392543` completed successfully for commit `e8b2397286511620cd5a34bf44b2d78642becec5` on PR #4.
 
 Required CI checks completed successfully: `test`, `lint`, and `security`.
 
@@ -42,6 +42,8 @@ Automated coverage includes:
 - suspended-member access is denied;
 - active-member access is allowed;
 - model coverage validates default pending state and normalized email behavior.
+
+The final evidence-documentation commit must also retain the required green CI checks before Product Owner acceptance.
 
 ## Non-Production Staging evidence
 
@@ -96,4 +98,4 @@ No Production deployment or live Production credentials were introduced.
 
 The complete Registration / Pending Member vertical slice, including guided registration, save/resume, password/session/recovery foundation, and the representative higher-risk account-state authorization slice, is implemented in business-controlled non-Production Staging.
 
-Automated CI evidence and manual Staging validation are complete. Milestone 2 is ready to be submitted to the Product Owner for acceptance review.
+Automated CI evidence and manual Staging validation are complete. Subject to green CI on the final evidence-documentation commit, Milestone 2 is ready to be submitted to the Product Owner for acceptance review.
