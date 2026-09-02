@@ -1,0 +1,15 @@
+<main>
+  <h1>Complete your registration</h1>
+  <p>Step 2 of 2 — Review and submit</p>
+
+  <p>Your account credentials have already been saved.</p>
+  <p>Email: <strong><%= current_user.email %></strong></p>
+  <p>Membership state: <strong><%= current_user.account_state %></strong></p>
+
+  <%= form_with url: registration_path, method: :patch do |form| %>
+    <%= form.submit "Save and continue later" %>
+    <%= form.button "Complete registration", name: :commit_registration, value: "1" %>
+  <% end %>
+
+  <p>You may sign out and return later. After your next successful sign-in, you will be returned to this step until registration is completed.</p>
+</main>
