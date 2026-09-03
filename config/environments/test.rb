@@ -8,4 +8,8 @@ Rails.application.configure do
   config.cache_store = :null_store
   config.action_dispatch.show_exceptions = :rescuable
   config.active_support.deprecation = :stderr
+
+  # Keep password-recovery tests fully local. Phase 0 does not require live mail delivery.
+  config.action_mailer.delivery_method = :test
+  config.action_mailer.perform_deliveries = true
 end
