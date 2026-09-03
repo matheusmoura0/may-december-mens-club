@@ -64,6 +64,17 @@ class RegistrationAuthorizationTest < ActionDispatch::IntegrationTest
     ENV["APP_BASE_URL"] = previous_base_url
   end
 
+  test "password reset request shows generic confirmation on sign in" do
+    create_user(account_state: :pending, email: "reset-confirmation@example.com")
+
+    post password_reset_requests_path, params: { email: "reset-confirmation@example.com" }
+    assert_redirected_to new_session_path
+
+    follow_redirect!
+    assert_response :success
+    assert_includes response.body, "If that email exists, password recovery instructions have been prepared."
+  end
+
   test "password reset token updates password and invalidates the old token" do
     user = create_user(account_state: :pending, email: "recover@example.com")
     token = user.generate_token_for(:password_reset)
