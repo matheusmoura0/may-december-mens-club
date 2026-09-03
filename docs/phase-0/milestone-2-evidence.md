@@ -2,105 +2,92 @@
 
 ## Milestone and acceptance status
 
-Milestone 2 — Accepted Pilot Slices (milestone name only).
+Milestone 2 - Accepted Pilot Slices (milestone name only).
 
-**Current Product Owner acceptance status: UAT INCOMPLETE / NOT ACCEPTED.** PR #4 remains unmerged. This evidence record does not represent Product Owner acceptance or payment approval.
+**Current Product Owner acceptance status: UNDER REVIEW / NOT YET ACCEPTED.** PR #4 remains unmerged. This evidence record does not represent Product Owner acceptance.
 
-## Product Owner interim UAT — 2026-09-03
+## Product Owner UAT - 2026-09-03
 
-Product Owner hands-on Staging UAT confirmed the following scenarios as passed:
+Product Owner Michael Fitzgerald completed additional hands-on Staging UAT after the latest correction.
 
-- minimum password length rejects passwords shorter than 12 characters;
-- Registration Step 1 persists valid credentials and creates a Pending account;
-- incomplete registration survives sign-out/sign-in and resumes at Step 2;
-- registration completion persists while membership remains Pending;
-- completed registration remains complete after a new sign-in;
-- Pending member direct access to `/members/dashboard` is denied;
-- case-normalized duplicate email is rejected;
-- wrong-password and nonexistent-email sign-in paths return the same generic error;
-- password-reset request for a nonexistent email does not disclose account existence.
+### Confirmed passed
 
-The Product Owner identified password recovery as a blocking failure. The reset request originally returned to Sign In without a visible confirmation and no recovery email was received. The confirmation rendering was corrected. The business then provisioned a Brevo Staging SMTP service using authenticated sending domain `mail.maydecemberclub.com` and verified sender `May December Men's Club <no-reply@mail.maydecemberclub.com>`.
+- Password-reset request is accepted and returns the non-enumerating confirmation message.
+- Recovery email is successfully transmitted through Brevo and received.
+- Recovery link uses the canonical Staging host `may-december-staging.onrender.com`.
+- A valid reset token opens the password-change form.
+- A new password is successfully accepted.
+- Authentication succeeds with the new password.
+- A fabricated/invalid reset token is rejected.
+- A previously used reset token cannot be reused.
+- Pending-member authorization remains enforced: while signed in as Pending, direct navigation to `/members/dashboard` is denied and redirects to the root/pending-member screen.
 
-Rails was updated to consume the Staging SMTP environment configuration and to perform the password-reset delivery synchronously in the single Render web service. Runtime logging was also directed to stdout for Staging diagnosis.
+Earlier Product Owner UAT also confirmed minimum password-length enforcement, registration Step 1 persistence, save/sign-out/resume behavior, registration completion persistence, normalized duplicate-email rejection, generic wrong-password/nonexistent-email sign-in behavior, and non-enumerating password-reset handling.
 
-Latest observed runtime result on 2026-09-03: the reset request reaches `PasswordResetsController#create` and the synchronous mail-delivery call, but terminates after approximately five seconds with `Net::OpenTimeout (execution expired)`. Brevo showed no corresponding transaction. This demonstrates that the current blocker is the application/runtime opening the configured SMTP connection, before Brevo accepts/authenticates a message.
+### Remaining Product Owner UAT
 
-**Password-recovery UAT remains failed/pending until a recovery message is actually delivered and the Product Owner retests the complete reset lifecycle.**
+The remaining acceptance test is the Active-member/stale-session authorization path:
 
-## Implemented pilot slices
+1. Product Owner signs in as an Active member and confirms `/members/dashboard` is authorized.
+2. The existing browser session remains signed in.
+3. The authoritative account state is changed from Active to Suspended in Staging without logging that session out.
+4. The same existing session requests the restricted route again.
+5. Expected result: immediate denial without requiring a new login.
 
-- Guided two-step member registration with save/resume.
-- Persisted registration completion state through `registration_completed_at`.
-- Email/password authentication; new members default to `pending`.
-- Account states: `pending`, `active`, and `suspended`.
-- Session sign-in/sign-out and session reset on successful authentication/registration.
-- Time-limited password-reset tokens and canonical reset URLs.
-- Restricted member dashboard with authoritative server-side account-state authorization.
-- Stale authenticated-session enforcement.
-- Password hashing through `has_secure_password` / bcrypt.
-- Explicit minimum password length of 12 characters.
-- Database constraints/indexes for account state and normalized email.
+Dedicated UAT account/state support exists in `lib/tasks/phase0_uat.rake` for Pending, Active and Suspended accounts and for transitioning the configured Active UAT account to Suspended.
 
 ## Mandatory acceptance requirement mapping
 
-### 2.1 Stale-state authorization
+### 2.1 Stale-state authorization enforcement
 
-`test/integration/registration_authorization_test.rb` contains `active session is denied after authoritative account state changes to suspended`, preserving the authenticated session, changing the authoritative DB state Active → Suspended, and proving the next restricted request is denied.
+Automated proof exists in `test/integration/registration_authorization_test.rb` via `active session is denied after authoritative account state changes to suspended`.
 
-Evidence: **Automated passed; coordinated Product Owner Staging test still pending.** Dedicated Pending/Active/Suspended Staging account provisioning support is implemented in `lib/tasks/phase0_uat.rake`.
+Evidence status: **Automated passed; Product Owner coordinated Staging validation pending.**
 
 ### 2.2 Canonical password-reset host
 
-Reset links use environment-controlled `APP_BASE_URL`. Staging is configured for `https://may-december-staging.onrender.com`. Automated coverage verifies canonical URL construction.
+Reset links use business-controlled `APP_BASE_URL`, with Staging configured as `https://may-december-staging.onrender.com`.
 
-Evidence: **Automated + Staging configuration. Full delivered-link UAT pending SMTP delivery.**
+Evidence status: **Automated passed + Product Owner end-to-end Staging UAT passed.**
 
-### 2.3 Sender / Staging mail infrastructure
+### 2.3 Sender / Staging mail delivery
 
-Staging mail configuration consumes `SMTP_ADDRESS`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, `SMTP_FROM_ADDRESS`, and `SMTP_FROM_NAME`. The business-controlled verified sender is `May December Men's Club <no-reply@mail.maydecemberclub.com>`.
+Staging uses the business-controlled Brevo SMTP setup and verified sender under `mail.maydecemberclub.com`.
 
-Evidence: **Configuration/code present; end-to-end delivery not yet passed.** Latest runtime attempt failed with `Net::OpenTimeout` before a Brevo transaction was created.
+Evidence status: **End-to-end Product Owner Staging UAT passed: message transmitted through Brevo and received.**
 
-### 2.4 Password-strength foundation
+### 2.4 Minimum password strength
 
-`User::MINIMUM_PASSWORD_LENGTH = 12`; automated coverage rejects shorter passwords. Product Owner UAT passed this scenario.
+`User::MINIMUM_PASSWORD_LENGTH = 12` with automated rejection coverage.
+
+Evidence status: **Automated passed + Product Owner UAT passed.**
 
 ### 2.5 Negative/failure paths
 
-Automated coverage includes invalid/expired reset token, invalid sign-in without session creation, case-normalized duplicate email, anonymous registration completion denial, and stale Active → Suspended denial. Product Owner UAT independently passed the generic sign-in/no-enumeration and duplicate-email scenarios described above.
+Automated coverage includes invalid/expired reset token, invalid sign-in without session creation, normalized duplicate email, anonymous completion-state modification denial and stale-session denial.
+
+Product Owner UAT additionally confirmed invalid reset-token rejection and used-token non-reuse.
 
 ### 2.6 Human technical/security review
 
-Repository history contains a prior review record attributed to Matheus Moura dated 2026-09-03. Subsequent Product Owner UAT exposed additional Staging mail-delivery findings, so that earlier record must not be interpreted as evidence that final Staging UAT is complete. Final human review/closure remains pending after the current corrections and Product Owner retest.
+Repository history contains the named review record for Matheus Moura dated 2026-09-03. Because subsequent UAT exposed and then corrected Staging mail-delivery issues, final closure should include a brief final Technical Lead review confirmation after the remaining Active -> Suspended UAT completes.
 
 ### 2.7 Effort / rework / defect accounting
 
-The previously confirmed Milestone 2 effort baseline was 21.0h. Additional UAT correction work has occurred after that baseline. Its human effort has not yet been confirmed by the Technical Lead and therefore is **not fabricated or silently added** here. The fixed Milestone 2 commercial amount remains **BRL 7,200**; invoicing does not itself constitute Product Owner acceptance.
+The previously confirmed Milestone 2 human-effort baseline is 21.0h. Additional UAT correction effort occurred after that baseline and has not yet been separately confirmed by the Technical Lead, so no additional hours are fabricated here.
 
-## CI and deployment evidence
+The fixed Milestone 2 invoice amount remains **BRL 7,200** under the Phase 0 Authorization. Submission of an invoice does not itself constitute Product Owner acceptance; payment remains conditional on acceptance.
 
-Historical CI is retained in repository/GitHub Actions history. Relevant correction heads include:
+## Defect/rework evidence retained
 
-- `620bdc3a856907da87e553433f3076b5b39713e4` — password-reset delivery changed to synchronous delivery for the single Staging web service; GitHub Actions run #126 completed successfully.
-- `80b6d7175d8a4cce5f9aecb358542a865bfaf0ad` — Staging stdout/error logging correction to expose runtime delivery failures.
+The evidence intentionally retains the earlier password-recovery UAT failure and SMTP timeout as historical defects. They are now marked corrected/validated in the defect and rework logs rather than removed from history.
 
-Render successfully deployed the correction branch to `may-december-staging`. Runtime requests for normal sign-in, registration, sign-out and home navigation were observed completing successfully. The password-reset POST alone was observed returning HTTP 500 with `Net::OpenTimeout` at the synchronous delivery call.
-
-## Current Staging blocker and required retest
-
-Before final Milestone 2 acceptance evidence can be submitted:
-
-1. Correct/verify the Brevo SMTP endpoint/port connectivity in the Render Staging environment and prove a transaction reaches Brevo.
-2. Product Owner repeats password-reset UAT and verifies sender, canonical Staging reset URL, valid token/password update, invalid/reused token behavior and subsequent sign-in.
-3. Provide/use dedicated Pending, Active and Suspended Staging UAT accounts.
-4. Coordinate the Active → Suspended stale-session test without terminating the Product Owner browser session.
-5. Record final Product Owner acceptance explicitly before merging PR #4.
+Relevant correction path included visible reset confirmation, Brevo Staging SMTP configuration, business-controlled sender configuration, synchronous delivery in the single Render web process, and stdout runtime diagnostics. Product Owner end-to-end password-recovery UAT now passes.
 
 ## Phase 0 boundaries
 
-All work remains limited to business-controlled non-Production Staging. No Production deployment, Production member data, live payment, live identity verification, MFA, or broader full-MVP capability is authorized by this evidence record.
+All work remains limited to business-controlled non-Production Staging. No Production deployment, real member Production data, live payment, live identity verification, MFA or broader full-MVP capability is authorized by this evidence record.
 
 ## Resubmission status
 
-PR #4 must remain **unmerged**. Milestone 2 remains **UAT INCOMPLETE / NOT ACCEPTED** until Michael Fitzgerald explicitly confirms Product Owner acceptance. This document intentionally preserves the UAT failure and SMTP timeout rather than representing the milestone as complete.
+PR #4 must remain **unmerged**. Milestone 2 remains **UNDER PRODUCT OWNER REVIEW / NOT YET ACCEPTED** until Michael Fitzgerald completes the remaining Active-member/stale-session test and explicitly confirms acceptance. Dependent Milestone 3 work must not begin based on this document alone.
