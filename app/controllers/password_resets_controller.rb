@@ -8,7 +8,11 @@ class PasswordResetsController < ApplicationController
     if user
       token = user.generate_token_for(:password_reset)
       reset_url = "#{application_base_url}/password/reset/#{token}"
-      PasswordResetMailer.with(user: user, reset_url: reset_url).reset.deliver_later
+
+      # Milestone 2 Staging runs as a single Render web service. Deliver the
+      # recovery message in the request process so SMTP delivery is exercised
+      # directly and does not depend on a separate Active Job worker.
+      PasswordResetMailer.with(user: user, reset_url: reset_url).reset.deliver_now
     end
 
     redirect_to new_session_path, notice: "If that email exists, password recovery instructions have been prepared."
