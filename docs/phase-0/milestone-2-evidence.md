@@ -2,9 +2,9 @@
 
 ## Milestone and acceptance status
 
-Milestone 2 - Accepted Pilot Slices (milestone name only).
+Milestone 2 - Accepted Pilot Slices.
 
-**Current status: FINAL EVIDENCE PACKAGE SUBMITTED FOR PRODUCT OWNER ACCEPTANCE / NOT YET ACCEPTED.** Product Owner hands-on UAT is complete and all acceptance scenarios have passed. PR #4 remains unmerged pending Michael Fitzgerald's explicit acceptance.
+**Product Owner acceptance status: ACCEPTED on 2026-09-04.** Michael Fitzgerald provided final Milestone 2 acceptance after completion of the final evidence package and all hands-on UAT. PR #4 may now be merged in accordance with the Phase 0 process.
 
 ## Product Owner UAT - 2026-09-03
 
@@ -66,17 +66,17 @@ Automated coverage includes invalid/expired reset token, invalid sign-in without
 
 ### 2.6 Named Technical Lead / security review
 
-**Final review confirmation - Matheus Moura, Technical Lead / Reviewer, 2026-09-03:** Following all Milestone 2 corrections and completed Product Owner UAT, I reviewed the final Milestone 2 implementation/evidence package for correctness, maintainability, security-sensitive authentication/password-recovery behavior, authoritative account-state authorization, architectural consistency with the approved Phase 0 slice, and non-Production Staging behavior. The identified Milestone 2 defects/corrections are represented in the retained defect/rework history. I confirm the package is ready for Product Owner acceptance review. This Technical Lead confirmation does not itself constitute Product Owner acceptance or authorization to merge.
+**Final review confirmation - Matheus Moura, Technical Lead / Reviewer, 2026-09-03:** Following all Milestone 2 corrections and completed Product Owner UAT, I reviewed the final Milestone 2 implementation/evidence package for correctness, maintainability, security-sensitive authentication/password-recovery behavior, authoritative account-state authorization, architectural consistency with the approved Phase 0 slice, and non-Production Staging behavior. The identified Milestone 2 defects/corrections are represented in the retained defect/rework history. I confirmed the package was ready for Product Owner acceptance review.
 
 ### 2.7 Effort / rework / defect accounting
 
 The previously confirmed Milestone 2 human-effort baseline was **21.0h**, including **2.0h rework** and **1.0h defect correction** within that baseline.
 
-Matheus Moura confirmed an additional **3.0h of human work** after the baseline for the Product Owner UAT correction cycle, including password-recovery/SMTP diagnosis and correction plus final Staging/UAT support. Final actual Milestone 2 human effort is therefore **24.0h**.
+Matheus Moura confirmed an additional **3.0h of human work** after the baseline for the Product Owner UAT correction cycle, including password-recovery/SMTP diagnosis and correction plus final Staging/UAT support. Final actual Milestone 2 human effort is **24.0h**.
 
-For transparent accounting, the 3.0h post-baseline correction cycle is recorded separately rather than retroactively inventing a per-defect split. Total correction/rework-related effort identifiable from the confirmed accounting is therefore **6.0h** (the prior 3.0h aggregate rework + defect correction, plus the 3.0h post-baseline UAT correction cycle), or **25.0% of the final 24.0h human effort**. This is an effort measure, not a code-line rewrite percentage.
+Total correction/rework-related effort identifiable from the confirmed accounting is **6.0h**, or **25.0% of the final 24.0h human effort**. This is an effort measure, not a source-line rewrite percentage.
 
-The fixed Milestone 2 invoice amount remains **BRL 7,200** under the Phase 0 Authorization. Submission of an invoice or this evidence package does not itself constitute Product Owner acceptance; payment remains conditional on explicit acceptance.
+The fixed Milestone 2 invoice amount remains **BRL 7,200** under the Phase 0 Authorization. With Product Owner acceptance now recorded, the accepted Milestone 2 invoice is payable under the agreement process.
 
 ## Defect/rework evidence retained
 
@@ -86,18 +86,16 @@ The correction path included visible reset confirmation, business-controlled Bre
 
 ## Final correction head and CI
 
-Final correction/evidence head at closure verification: `47fb1c953616019adeed7788a70270ec59ccc409`.
+Verified correction/evidence head before final documentation closure: `47fb1c953616019adeed7788a70270ec59ccc409`, with GitHub Actions CI run **#150** (`33820896074`) successful.
 
-GitHub Actions CI run **#150** (`33820896074`) for that head completed with conclusion **success**.
-
-The documentation closure commits that record the final Product Owner UAT and confirmed 24.0h accounting may advance the PR head after the above verified correction head; they do not change the tested application behavior. Final PR metadata should identify the current documentation head separately from the verified correction/CI head.
+The later final package head `f3771811b80a13718521692ab13540630a43cc98`, which includes the final effort-log reconciliation, also completed successfully on GitHub Actions CI run **#158**.
 
 ## Phase 0 boundaries
 
 All work remains limited to business-controlled non-Production Staging. No Production deployment, real member Production data, live payment, live identity verification, MFA or broader full-MVP capability is authorized by this evidence record.
 
-## Final submission status
+## Acceptance closure
 
-Product Owner UAT is **COMPLETE / ALL HANDS-ON ACCEPTANCE SCENARIOS PASSED**. The final evidence package is submitted for Michael Fitzgerald's explicit Product Owner acceptance.
+Milestone 2 Product Owner UAT is **COMPLETE / PASSED** and the final evidence package is **ACCEPTED by Product Owner Michael Fitzgerald on 2026-09-04**.
 
-PR #4 must remain **unmerged** until that explicit acceptance is received. Milestone 2 is therefore **NOT YET ACCEPTED** despite completion of UAT. Dependent Milestone 3 work must not begin based on this evidence package alone.
+PR #4 may be merged. Milestone 3 - Evidence & Recommendation is the next authorized Phase 0 milestone. Milestone 3 must remain within the approved Phase 0 scope and must be fully Technical Lead tested/UAT-validated in non-Production Staging before submission for Product Owner acceptance.
