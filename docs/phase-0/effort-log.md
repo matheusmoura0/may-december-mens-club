@@ -39,11 +39,15 @@ After that baseline, Matheus Moura confirmed an additional **3.0h** of human wor
 
 The identifiable correction/rework-related effort therefore totals **6.0h**, consisting of the prior confirmed **3.0h** aggregate rework + defect correction in the baseline plus the confirmed **3.0h** post-baseline correction/UAT cycle. This equals **25.0% of the final 24.0h Milestone 2 human effort**. This is an effort-based Phase 0 rework/correction measure and is not represented as a literal percentage of source-code lines rewritten.
 
-The Milestone 2 fixed commercial amount remains **BRL 7,200** and is not changed by this effort accounting. Submission of the evidence package or invoice does not itself constitute Product Owner acceptance.
+The Milestone 2 fixed commercial amount is **BRL 7,200**.
 
-## Milestone 2 acceptance status
+## Milestone 2 acceptance and payment status
 
-All Product Owner hands-on Milestone 2 UAT scenarios are complete and passed, including password recovery and the same-session Active -> Suspended authorization test. PR #4 remains unmerged and Milestone 2 remains **NOT YET ACCEPTED** until Michael Fitzgerald explicitly accepts the final evidence package.
+Milestone 2 was explicitly accepted by Product Owner Michael Fitzgerald on **2026-09-04** after all hands-on acceptance scenarios passed. PR #4 was subsequently merged to `main` as merge commit `58d9014ca7ae5c163dcb1feb17a803c492078dc7`. Matheus Moura confirmed on 2026-09-04 that the Milestone 2 invoice was paid.
+
+### Milestone 3
+
+Milestone 3 — Evidence & Recommendation — is now the active Phase 0 milestone. No Milestone 3 human-effort amount is recorded here until actual effort is supplied/confirmed. Work for M3 must continue to be logged using the same evidence rules below.
 
 ## Logging rules
 
