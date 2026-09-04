@@ -23,9 +23,9 @@ No material product, security, authorization, or data-integrity defects were rec
 
 ## Final UAT / acceptance state
 
-All Product Owner hands-on UAT scenarios are complete and passed, including the final same-session Active -> Suspended authorization test. No known Milestone 2 UAT blocker remains.
+All Product Owner hands-on Milestone 2 UAT scenarios completed and passed, including the final same-session Active -> Suspended authorization test. No known Milestone 2 UAT blocker remained at acceptance.
 
-PR #4 remains **unmerged** and Milestone 2 remains **NOT YET ACCEPTED** only because explicit Product Owner acceptance of the final evidence package is still pending.
+Milestone 2 was explicitly **ACCEPTED by Product Owner Michael Fitzgerald on 2026-09-04**, PR #4 was subsequently merged to `main`, and Matheus Moura confirmed the Milestone 2 payment was received on 2026-09-04.
 
 ## Final effort accounting
 
@@ -34,6 +34,10 @@ The previously confirmed M2 human-effort baseline was **21.0h**, including **2.0
 Final actual M2 human effort: **24.0h**.
 
 Confirmed correction/rework-related effort identifiable from the aggregate accounting: **6.0h / 24.0h = 25.0%**, consisting of the prior 3.0h aggregate rework/defect correction plus the 3.0h post-baseline UAT correction cycle. No unsupported per-defect time split is invented.
+
+## Milestone 3 review state
+
+Milestone 3 technical review findings that are future-MVP conditions rather than defects in the authorized Phase 0 slice are recorded in `architecture-review.md`, `security-review.md`, and `code-quality-review.md`. Any actual defect discovered during Milestone 3 Technical Lead Staging UAT must be added here, corrected, retested, and reflected in actual effort/rework accounting before submission.
 
 ## Severity guide
 
