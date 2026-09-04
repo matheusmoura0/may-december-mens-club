@@ -16,8 +16,17 @@ The Product Owner Changes Required review then identified missing proof/hardenin
 |---|---|---|---|---|
 | 2026-09-02 | Scope-completeness correction: guided registration save/resume + password recovery | Required authorized scope was incomplete in the first M2 implementation. | Included in previously confirmed aggregate 2.0h rework. | Corrected; automated coverage added and deployed. |
 | 2026-09-02 to 2026-09-03 | Product Owner Changes Required corrections | Required proof/configuration and negative-path coverage were incomplete. | Included in previously confirmed aggregate 2.0h rework / 1.0h defect correction baseline. | Stale-state automated proof, canonical `APP_BASE_URL`, sender configuration, password minimum and failure-path coverage added. |
-| 2026-09-03 | Product Owner UAT password-recovery corrections | Product Owner found missing reset confirmation and no delivered recovery email; runtime diagnosis later surfaced outbound SMTP `Net::OpenTimeout`. | Additional post-baseline human correction time has not yet been confirmed and is intentionally not fabricated. | Confirmation UI corrected; business-controlled Brevo Staging delivery configured/corrected; Product Owner end-to-end recovery UAT now passes, including receipt, canonical link, password update, new-password sign-in, invalid token and used-token rejection. |
+| 2026-09-03 | Product Owner UAT password-recovery / SMTP correction cycle | Product Owner found missing reset confirmation and no delivered recovery email; runtime diagnosis surfaced outbound SMTP `Net::OpenTimeout`. | **3.0h additional human work confirmed by Matheus Moura.** This is retained as an aggregate correction-cycle value; no unsupported per-defect split is invented. | Confirmation UI corrected; business-controlled Brevo Staging delivery corrected; Product Owner end-to-end recovery UAT passed. |
+| 2026-09-03 | Final authorization UAT support | Required hands-on proof that an already-authenticated Active member is immediately denied after authoritative Active -> Suspended transition without a new login. | Included within the confirmed post-baseline 3.0h correction/UAT cycle. | Product Owner retained the same session, observed initial Active dashboard access, then immediate denial after the state transition. Passed. |
 
-The previously confirmed Milestone 2 accounting remains a **21.0h baseline**, including 2.0h rework and 1.0h defect correction. Additional human time for the 2026-09-03 UAT corrections must be added only after the Technical Lead confirms the actual amount.
+## Final accounting
 
-Milestone 2 remains under Product Owner review pending the remaining Active-member / same-session Active -> Suspended Staging authorization test. PR #4 remains unmerged.
+Previously confirmed human-effort baseline: **21.0h**, including **2.0h rework** and **1.0h defect correction**.
+
+Confirmed additional post-baseline correction/UAT work: **3.0h**.
+
+Final actual Milestone 2 human effort: **24.0h**.
+
+Correction/rework-related effort identifiable from the confirmed aggregate accounting: **6.0h**, or **25.0% of 24.0h**. This combines the prior 3.0h aggregate rework/defect correction with the 3.0h post-baseline correction/UAT cycle; it is not represented as a literal code-line rewrite percentage.
+
+All Product Owner hands-on Milestone 2 UAT scenarios are now complete and passed. PR #4 remains unmerged and the milestone remains not yet accepted until Michael Fitzgerald explicitly accepts the final evidence package.
