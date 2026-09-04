@@ -2,7 +2,7 @@
 
 ## Status
 
-**IN PROGRESS — NOT YET SUBMITTED FOR PRODUCT OWNER ACCEPTANCE**
+**IN PROGRESS — GATE B TECHNICAL REVIEW COMPLETE / GATE C TECHNICAL LEAD STAGING UAT NEXT — NOT YET SUBMITTED FOR PRODUCT OWNER ACCEPTANCE**
 
 Milestone 3 begins from the accepted Milestone 2 baseline merged to `main` in PR #4. This milestone is evidence/recommendation work inside the existing Phase 0 authorization; it does not authorize Production deployment, broader MVP implementation, staffing expansion, or new material external commitments.
 
@@ -28,33 +28,37 @@ Milestone 3 begins from the accepted Milestone 2 baseline merged to `main` in PR
 
 ## Work sequence
 
-### Gate A — Baseline consolidation
+### Gate A — Baseline consolidation — COMPLETE
 
-- Confirm M1 and M2 evidence present on `main`.
-- Reconcile effort, defect, rework, CI and acceptance records.
-- Preserve accepted M2 values: **24.0h actual human effort** and **6.0h identifiable correction/rework-related effort (25.0%)**.
-- Record M2 acceptance, merge and payment status.
-- Establish the initial Phase 0 scorecard without inventing unavailable metrics.
+- M1 and M2 evidence confirmed in the Phase 0 documentation set.
+- Effort, defect, rework, CI and acceptance records reconciled for the working M3 baseline.
+- Accepted M2 values preserved: **24.0h actual human effort** and **6.0h identifiable correction/rework-related effort (25.0%)**.
+- M2 acceptance, merge and payment status recorded.
+- Initial Phase 0 scorecard established without inventing unavailable metrics.
 
-### Gate B — Technical review
+### Gate B — Technical review — COMPLETE
 
-Perform and document:
+Completed review documents:
 
-- Rails architecture review;
-- authorization/state-transition review;
-- authentication/password-recovery review;
-- environment/configuration/secrets review;
-- automated-test coverage review;
-- maintainability/code-quality review;
-- residual-risk review.
+- `docs/phase-0/architecture-review.md`;
+- `docs/phase-0/security-review.md`;
+- `docs/phase-0/code-quality-review.md`.
 
-Every finding must be classified as one of:
+Review scope covered:
 
-- acceptable for Phase 0 / full-build planning;
-- condition for future MVP implementation;
-- correction required before Milestone 3 submission.
+- Rails architecture;
+- authorization/state transition behavior;
+- authentication/password recovery;
+- environment/configuration/secrets boundaries;
+- automated-test coverage;
+- maintainability/code quality;
+- residual risk.
 
-### Gate C — Technical Lead end-to-end Staging UAT
+No reviewed finding currently requires correction before Milestone 3 submission within the authorized non-Production Phase 0 scope. The review identified future-MVP conditions that must be carried into the final recommendation, including resilient asynchronous email delivery, explicit removal/disablement of Phase 0 UAT-only routes before Production, authentication/recovery abuse controls, and evolution of authorization/domain structure as application complexity grows.
+
+### Gate C — Technical Lead end-to-end Staging UAT — NEXT / NOT YET EXECUTED
+
+The execution checklist is recorded in `docs/phase-0/milestone-3-uat.md`.
 
 Before Product Owner submission, the Technical Lead must execute the relevant accepted pilot workflows directly against non-Production Staging and record actual PASS/FAIL results.
 
