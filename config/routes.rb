@@ -13,5 +13,11 @@ Rails.application.routes.draw do
     resource :dashboard, only: :show
   end
 
+  namespace :phase0 do
+    namespace :uat do
+      resource :state_transition, only: %i[show update]
+    end
+  end
+
   root "home#index"
 end
