@@ -1,0 +1,58 @@
+class PasswordResetsController < ApplicationController
+  def new
+  end
+
+  def create
+    user = User.find_by(email: params[:email].to_s.strip.downcase)
+
+    if user
+      token = user.generate_token_for(:password_reset)
+      reset_url = "#{application_base_url}/password/reset/#{token}"
+
+      # Milestone 2 Staging runs as a single Render web service. Deliver the
+      # recovery message in the request process so SMTP delivery is exercised
+      # directly and does not depend on a separate Active Job worker.
+      PasswordResetMailer.with(user: user, reset_url: reset_url).reset.deliver_now
+    end
+
+    redirect_to new_session_path, notice: "If that email exists, password recovery instructions have been prepared."
+  end
+
+  def edit
+    @user = User.find_by_token_for(:password_reset, params[:token])
+    return if @user
+
+    redirect_to new_password_reset_path, alert: "That password recovery link is invalid or has expired."
+  end
+
+  def update
+    @user = User.find_by_token_for(:password_reset, params[:token])
+
+    unless @user
+      redirect_to new_password_reset_path, alert: "That password recovery link is invalid or has expired."
+      return
+    end
+
+    if @user.update(password_params)
+      reset_session
+      session[:user_id] = @user.id
+      redirect_to root_path, notice: "Password updated successfully."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def application_base_url
+    configured_url = ENV["APP_BASE_URL"]
+    return configured_url.delete_suffix("/") if configured_url.present?
+    return "http://localhost:3000" unless Rails.env.production?
+
+    raise KeyError, "APP_BASE_URL must be configured in deployed environments"
+  end
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
+  end
+end

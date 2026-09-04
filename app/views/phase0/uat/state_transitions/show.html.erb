@@ -1,0 +1,20 @@
+<h1>Milestone 2 stale-session UAT</h1>
+
+<% if flash[:notice].present? %>
+  <p><%= flash[:notice] %></p>
+<% end %>
+
+<p>Current authoritative account state: <strong><%= current_user.account_state %></strong></p>
+
+<% if current_user.active? %>
+  <p>First confirm that <a href="/members/dashboard">/members/dashboard</a> is accessible in this signed-in browser session.</p>
+
+  <p>Then use the button below to change this same account from Active to Suspended without signing out or replacing the session.</p>
+
+  <%= button_to "Change Active account to Suspended", phase0_uat_state_transition_path,
+      method: :patch,
+      data: { turbo_confirm: "Change this UAT account from Active to Suspended now? Keep this browser session open after the transition." } %>
+<% else %>
+  <p>The UAT account is now suspended. Without signing out, request <a href="/members/dashboard">/members/dashboard</a> again.</p>
+  <p>Expected result: immediate denial/redirect while this same authenticated session is still in use.</p>
+<% end %>

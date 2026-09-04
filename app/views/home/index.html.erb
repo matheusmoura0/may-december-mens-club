@@ -1,4 +1,20 @@
 <main>
   <h1>May December Men's Club</h1>
-  <p>Phase 0 foundation is running.</p>
+  <p>Phase 0 registration and authorization pilot.</p>
+
+  <% if signed_in? %>
+    <p>Signed in as <%= current_user.email %>.</p>
+    <p>Membership status: <strong><%= current_user.account_state %></strong>.</p>
+
+    <% if current_user.active? %>
+      <p><%= link_to "Open member dashboard", members_dashboard_path %></p>
+    <% else %>
+      <p>Your membership is not active yet.</p>
+    <% end %>
+
+    <%= button_to "Sign out", session_path, method: :delete %>
+  <% else %>
+    <p><%= link_to "Register", new_registration_path %></p>
+    <p><%= link_to "Sign in", new_session_path %></p>
+  <% end %>
 </main>
