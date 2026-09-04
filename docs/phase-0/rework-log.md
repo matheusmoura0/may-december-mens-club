@@ -19,7 +19,7 @@ The Product Owner Changes Required review then identified missing proof/hardenin
 | 2026-09-03 | Product Owner UAT password-recovery / SMTP correction cycle | Product Owner found missing reset confirmation and no delivered recovery email; runtime diagnosis surfaced outbound SMTP `Net::OpenTimeout`. | **3.0h additional human work confirmed by Matheus Moura.** This is retained as an aggregate correction-cycle value; no unsupported per-defect split is invented. | Confirmation UI corrected; business-controlled Brevo Staging delivery corrected; Product Owner end-to-end recovery UAT passed. |
 | 2026-09-03 | Final authorization UAT support | Required hands-on proof that an already-authenticated Active member is immediately denied after authoritative Active -> Suspended transition without a new login. | Included within the confirmed post-baseline 3.0h correction/UAT cycle. | Product Owner retained the same session, observed initial Active dashboard access, then immediate denial after the state transition. Passed. |
 
-## Final accounting
+## Final Milestone 2 accounting
 
 Previously confirmed human-effort baseline: **21.0h**, including **2.0h rework** and **1.0h defect correction**.
 
@@ -29,4 +29,8 @@ Final actual Milestone 2 human effort: **24.0h**.
 
 Correction/rework-related effort identifiable from the confirmed aggregate accounting: **6.0h**, or **25.0% of 24.0h**. This combines the prior 3.0h aggregate rework/defect correction with the 3.0h post-baseline correction/UAT cycle; it is not represented as a literal code-line rewrite percentage.
 
-All Product Owner hands-on Milestone 2 UAT scenarios are now complete and passed. PR #4 remains unmerged and the milestone remains not yet accepted until Michael Fitzgerald explicitly accepts the final evidence package.
+All Product Owner hands-on Milestone 2 UAT scenarios completed and passed. Milestone 2 was **ACCEPTED on 2026-09-04**, PR #4 was merged to `main`, and Matheus Moura confirmed payment was received.
+
+## Milestone 3 rule
+
+Milestone 3 review findings that describe future-MVP hardening are not counted as rework unless the authorized Phase 0 submission itself must be changed because of them. Any defect or submission-blocking gap found during Technical Lead review/UAT must be recorded here with actual correction/retest effort before Product Owner submission.
